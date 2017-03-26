@@ -71,4 +71,11 @@ public class Matrix {
 		}
 		return sub;
 	}
+	
+	// adds an element to the matrix
+	public void addElement(int element, int r, int c) {
+		if( (r >= 0) && (c >= 0) && (r < n) && (c < n) ) {
+			mdata[r][c] = element;
+		}
+	}	
 }
