@@ -30,7 +30,7 @@ public class Main {
 				}
 				
 				Matrix m = new Matrix(n);
-				// read all inputs
+				// read all inputs to  matrix
 				for(int i = 0; i < n; i++) {
 					for(int j = 0; j < n; j++) {
 						in.read(buffer);
@@ -39,11 +39,16 @@ public class Main {
 						m.addElement(Integer.parseInt(line), i, j);
 					}
 				}
-				in >> m;
 				
 				out.write("M = ");
 				out.write("\n");
-				out.write(m);
+				// write all outputs from  matrix
+				for(int i = 0; i < n; i++) {
+					for(int j = 0; j < n; j++) {
+						out.write(   Double.toString( m.returnElement(i, j) )   );
+					}
+					out.write("\n");
+				}
 				out.write("\n");
 				
 				double det = m.determinant();
@@ -63,7 +68,8 @@ public class Main {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Error - File Not found");
+			System.out.println("Error:");
+			System.out.println(e);
 		}
 	}
 }

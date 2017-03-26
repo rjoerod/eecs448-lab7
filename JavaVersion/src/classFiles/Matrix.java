@@ -77,5 +77,14 @@ public class Matrix {
 		if( (r >= 0) && (c >= 0) && (r < n) && (c < n) ) {
 			mdata[r][c] = element;
 		}
+	}
+
+	public double returnElement(int r, int c) {
+		if( (r >= 0) && (c >= 0) && (r < n) && (c < n) ) {
+			return mdata[r][c];
+		}
+		else {
+			throw new RuntimeException("Invalid Row/Column");
+		}
 	}	
 }
