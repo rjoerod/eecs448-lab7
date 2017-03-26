@@ -27,9 +27,7 @@ public class Matrix {
 			det = mdata[0][0] * mdata[1][1] - mdata[0][1] * mdata[1][0];
 		}
 		else {
-			for(int i = 0; i < n; i++) {
-				det += pow(-1.0, (double)i) * mdata[0][i] * subMatrix(0, i).determinant();
-			}
+
 		}
 		return det;
 	}
@@ -39,8 +37,24 @@ public class Matrix {
 		return null;
 	}
 	
-	public Matrix subMatrix(int i, int j) {
-		return null;
+	// returns submatrix to given param where r is row and c is columns
+	public Matrix subMatrix(int r, int c) {
 		
+		Matrix sub = new Matrix(n-1);
+		
+		int row = 0;
+		for(int i = 0; i < n; i++) {
+			if (i == r) continue;
+			
+			int col = 0;
+			for(int j = 0; j < n; j++) {
+				if(j == c) continue;
+				
+				sub.mdata[row][col] = mdata[i][j];
+				col++;
+			}
+			row++;
+		}
+		return sub;
 	}
 }
