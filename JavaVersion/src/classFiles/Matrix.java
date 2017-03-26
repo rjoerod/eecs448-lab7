@@ -9,9 +9,9 @@ public class Matrix {
 	private double[][] mdata = new double[MaxSize][MaxSize];
 	
 	
-	// constructo
-	public Matrix() {
-
+	// constructor
+	public Matrix(int _n) {
+		n = _n;
 	}
 	
 	public double Determinant() {
