@@ -79,6 +79,7 @@ public class Matrix {
 		}
 	}
 
+	// returns an element from the matrix
 	public double returnElement(int r, int c) {
 		if( (r >= 0) && (c >= 0) && (r < n) && (c < n) ) {
 			return mdata[r][c];
