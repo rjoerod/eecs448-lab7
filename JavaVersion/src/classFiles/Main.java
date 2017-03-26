@@ -1,6 +1,7 @@
 package classFiles;
 import java.io.*;
 import java.nio.CharBuffer;
+import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
@@ -22,35 +23,29 @@ public class Main {
 		
 		// initialize file stream
 		try {
-			FileReader in = new FileReader(fileInput);
+			File in = new File(fileInput);
+			Scanner scanner = new Scanner(in);
 			FileWriter out = new FileWriter(args[1]);
-			
+			System.out.println("Process commands");
 			// Process commands
 			int n;
-			CharBuffer buffer = null;
-			String line;
 			while ( true )
 			{
-				in.read(buffer);
-				if(buffer == null) {
-					break;
-				}
-				line = buffer.toString();
+				
 				// read size of matrix
-				n = Integer.parseInt(line);
+				n = scanner.nextInt();
 				// break out of loop if n is not a valid size of matrix
 				if(n <= 0) {
 					break;
 				}
-				
+				System.out.println("read all inputs to  matrix");
 				Matrix m = new Matrix(n);
 				// read all inputs to  matrix
 				for(int i = 0; i < n; i++) {
 					for(int j = 0; j < n; j++) {
-						in.read(buffer);
-						line = buffer.toString();
+
 						// read size of matrix
-						m.addElement(Integer.parseInt(line), i, j);
+						m.addElement(scanner.nextInt(), i, j);
 					}
 				}
 				
@@ -87,12 +82,13 @@ public class Main {
 					out.write("\n");
 				}
 			}
-			in.close();
+			scanner.close();
 			out.close();
 		}
 		catch (Exception e) {
 			System.out.println("Error:");
 			System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 }
