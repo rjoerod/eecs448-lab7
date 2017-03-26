@@ -34,9 +34,21 @@ public class Matrix {
 		return det;
 	}
 	
+	// returns inverse of the matrix
 	public Matrix inverse() {
 		
-		return null;
+		Matrix inv = new Matrix(n);
+		double det = determinant();
+		
+		for (int i = 0; i < n; ++i)
+		{
+			for (int j = 0; j < n; ++j)
+			{
+				inv.mdata[i][j] = Math.pow(-1.0, (double)i + j) * subMatrix(j, i).determinant() / det;
+			}
+		}
+		
+		return inv;
 	}
 	
 	// returns submatrix to given param where r is row and c is columns
