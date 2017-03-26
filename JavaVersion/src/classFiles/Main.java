@@ -1,5 +1,6 @@
 package classFiles;
 import java.io.*;
+import java.nio.CharBuffer;
 
 public class Main {
 	public static void main(String[] args) {
@@ -11,12 +12,58 @@ public class Main {
 		
 		// initialize file stream
 		try {
-			FileInputStream in = new FileInputStream(args[1]);
-			FileOutputStream out = new FileOutputStream(args[2]);
+			FileReader in = new FileReader(args[1]);
+			FileWriter out = new FileWriter(args[2]);
+			
+			// Process commands
+			int n;
+			CharBuffer buffer;
+			String line;
+			while ( (in.read(buffer)) != -1 )
+			{
+				line = buffer.toString();
+				// read size of matrix
+				n = Integer.parseInt(line);
+				// break out of loop if n is not a valid size of matrix
+				if(n <= 0) {
+					break;
+				}
+				
+				Matrix m = new Matrix(n);
+				// read all inputs
+				for(int i = 0; i < n; i++) {
+					for(int j = 0; j < n; j++) {
+						in.read(buffer);
+						line = buffer.toString();
+						// read size of matrix
+						m.addElement(Integer.parseInt(line), i, j);
+					}
+				}
+				in >> m;
+				
+				out.write("M = ");
+				out.write("\n");
+				out.write(m);
+				out.write("\n");
+				
+				double det = m.determinant();
+				out.write("det(M) = "); 
+				out.write(det);
+				out.write("\n\n");
+				
+				if (det != 0)
+				{
+					Matrix inv = m.inverse();
+
+					out.write("Minv = ");
+					out.write("\n");
+					out.write(inv);
+					out.write("\n");
+				}
+			}
 		}
 		catch (Exception e) {
 			System.out.println("Error - File Not found");
 		}
-		
 	}
 }
