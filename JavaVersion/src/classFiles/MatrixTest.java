@@ -101,7 +101,7 @@ public class MatrixTest {
 		mTestSub.addElement(8,1,0);
 		mTestSub.addElement(0,1,1);
 		
-		// test if inverse of mTest is mTestSub
+		// test if sub-matrix of mTest is mTestSub
 		for(int i = 0; i < 2; i++) {
 			for(int j = 0; j < 2; j++) {
 				assertEquals( mTestSub.returnElement(i,j), (mTest.subMatrix(1,2)).returnElement(i,j), 0.001 );
@@ -111,7 +111,22 @@ public class MatrixTest {
 
 	@Test
 	public void testReturnElement() {
-		fail("Not yet implemented");
+		
+		// initialize matrix
+		Matrix mTest = new Matrix(2);
+		
+		// add elements
+		mTest.addElement(2,0,0);
+		mTest.addElement(2,0,1);
+		
+		mTest.addElement(8,1,0);
+		mTest.addElement(0,1,1);
+		
+		// test if all elements of mTest return the correct value
+		assertEquals(2, mTest.returnElement(0, 0), 0.001);
+		assertEquals(2, mTest.returnElement(0, 1), 0.001);
+		assertEquals(8, mTest.returnElement(1, 0), 0.001);
+		assertEquals(0, mTest.returnElement(1, 1), 0.001);
 	}
 
 }
